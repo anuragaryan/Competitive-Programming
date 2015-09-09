@@ -4,7 +4,7 @@ using namespace std;
 int INF=100000;
 int d[10];
 int mem[10][10000];
-bool picked[10][1000];
+bool picked[10][10000];
 
 int opt(int i, int x){
     if(x<0) return INF;
