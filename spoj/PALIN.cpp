@@ -11,6 +11,7 @@ void pal(int right,int left){
 	}
 	s[k]=0;
 	for(i=0, j=k-1; i<j; i++,j--) s[i]=s[j];
+    if(s[s.length()-1]=='0') s+="1";
 }
 int main(){
 	int t;
@@ -18,13 +19,17 @@ int main(){
 	while(t--){
 		int l,odd,right,left,flag=0;
 		cin>>s;
+        if(s=="9"){
+            cout<<"11"<<endl;
+            continue;
+        }
 		l=s.length();
 		odd=(l&1)?1:0;
 		right=(l+1)/2;
 		left=(l-1)/2;
 		left= odd? left-1: left;
-		for(int i=left, j=right; i>0 && j<l; i--, j++){
-			if(s[i]>s[j]){
+		for(int i=left, j=right; i>=0 && j<l; i--, j++){
+			if(s[i]>s[j] || flag){
 				s[j]=s[i];
 				flag=1;
 			}
@@ -34,7 +39,7 @@ int main(){
 				break;
 			}
 		}
-		if(!flag) pal(right,left);
+        if(!flag) pal(right,left);
 		cout<<s<<endl;
 	}
 	return 0;
